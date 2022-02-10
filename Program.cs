@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 //Added items services
 builder.Services.AddSingleton<ItemsService>();
+//Added Login Service
+builder.Services.AddSingleton<LoginService>();
 
 
 
