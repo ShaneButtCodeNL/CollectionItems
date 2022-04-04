@@ -31,8 +31,6 @@ public class ItemsService{
       return list;
     }
 
-   
-
    public async Task<Item?> GetItem(string id)=>
       await _itemsCollection.Find(i=>i.Id==id).FirstOrDefaultAsync();
    

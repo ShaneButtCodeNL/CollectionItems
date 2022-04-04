@@ -29,8 +29,6 @@ public class ItemController :ControllerBase{
    [HttpGet("search/{name}")]
    public async Task<List<Item>> GetSearch(string name)=>await _itemService.GetItemsWithNameContains(name);
 
-  
-
    [HttpPost]
    public async Task<IActionResult> Post(Item newItem){
       newItem.Id=ObjectId.GenerateNewId().ToString();
