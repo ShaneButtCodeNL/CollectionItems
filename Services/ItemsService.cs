@@ -33,8 +33,12 @@ public class ItemsService{
 
    
 
-   public async Task<Item?> GetItem(string id)=>
-      await _itemsCollection.Find(i=>i.Id==id).FirstOrDefaultAsync();
+   public async Task<Item?> GetItem(string id){
+      Console.WriteLine("INHERE");
+      Console.WriteLine(id);
+
+      return await _itemsCollection.Find(i=>i.Id==id).FirstOrDefaultAsync();
+   }
    
    public async Task CreateAsync(Item newItem)=>await _itemsCollection.InsertOneAsync(newItem);
    

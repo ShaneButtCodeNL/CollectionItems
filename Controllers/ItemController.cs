@@ -2,6 +2,7 @@ using CollectionItems.Models;
 using CollectionItems.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CollectionItems.Controllers;
 
@@ -32,6 +33,7 @@ public class ItemController :ControllerBase{
   
 
    [HttpPost]
+   [Authorize]
    public async Task<IActionResult> Post(Item newItem){
       newItem.Id=ObjectId.GenerateNewId().ToString();
       await _itemService.CreateAsync(newItem);
@@ -39,6 +41,7 @@ public class ItemController :ControllerBase{
    }
 
    [HttpPut("{id}")]
+   [Authorize]
    public async Task<IActionResult> Put(string id,Item updatedItem){
       var item=await _itemService.GetItem(id);
       if(item ==null)return NotFound();
@@ -48,8 +51,13 @@ public class ItemController :ControllerBase{
    }
 
    [HttpDelete("{id}")]
+   [Authorize]
    public async Task<IActionResult> Delete(string id){
-      var item=_itemService.GetItem(id);
+      Console.WriteLine(id);
+      Console.WriteLine("Before");
+      string idd=id;
+      var item=await _itemService.GetItem(idd);
+      Console.WriteLine("After");
       if(item == null) return NotFound();
       await _itemService.RemoveAsync(id);
       return NoContent();
