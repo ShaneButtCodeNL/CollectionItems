@@ -27,7 +27,7 @@ public class LoginController:ControllerBase{
       Console.WriteLine("\n\n"+lc.Username+" "+lc.Password+"\n\n");
       var login=await AuthenticateLogin(lc);
       if(login==null)return NotFound("User Not Found.");
-      _loginService.UpdateLogin(login.Id);
+      await _loginService.UpdateLogin(login.Id);
       var token = Generate(login);
       return Ok(token);
    }
@@ -57,4 +57,4 @@ public class LoginController:ControllerBase{
 
       return new JwtSecurityTokenHandler().WriteToken(token);
    }
-}
+} 

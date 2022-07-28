@@ -11,8 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //Added to get database values from appsettings.json
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettingsLogin"));
+
+
 //Added items services
 builder.Services.AddSingleton<ItemsService>();
+builder.Services.AddSingleton<LoginService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
     options=>{

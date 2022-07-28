@@ -20,7 +20,7 @@ public class ItemsService{
    public async Task<List<Item>> GetAllItems()=> await _itemsCollection.Find(_=>true).ToListAsync();
    //Http get type // gets all items of a type
    public async Task<List<Item>> GetItemsByType(string type){
-      var list=await _itemsCollection.Find(item=>item.Type.ToLower()==type.ToLower()).ToListAsync();
+      var list=await _itemsCollection.Find(item=>item.Type != null && item.Type.ToLower()==type.ToLower()).ToListAsync();
       return list;
    }
    public async Task<List<Item>> GetItemsWithNameContains(String name){

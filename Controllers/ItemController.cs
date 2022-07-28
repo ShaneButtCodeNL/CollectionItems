@@ -17,7 +17,7 @@ public class ItemController :ControllerBase{
    [HttpGet]
    public async Task<List<Item>> Get()=>await _itemService.GetAllItems();
    [HttpGet("{id}")]
-   public async Task<Item> Get(string id)=>await _itemService.GetItem(id);
+   public async Task<Item?> Get(string id)=>await _itemService.GetItem(id);
    [HttpGet("Anime")]
    public async Task<List<Item>> GetAnime()=>await _itemService.GetItemsByType("anime");
    [HttpGet("Figure")]
